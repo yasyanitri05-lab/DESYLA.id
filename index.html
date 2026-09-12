@@ -3,234 +3,404 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DESYLA.ID — Preloved Marketplace</title>
+<title>DESYLA.ID — Marketplace Preloved</title>
 <style>
-:root{
-  --cream:#f8f2eb; --paper:#fffdf9; --brown:#4b3729; --muted:#75685d;
-  --line:#eadfd5; --accent:#8b6a52; --soft:#efe3d7;
+:root{--brown:#49362a;--brown2:#6e5441;--cream:#f7f0e8;--soft:#fbf8f4;--line:#e8ddd3;--text:#302823;--muted:#7c7068;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.topbar{background:var(--brown);color:#fff;font-size:12px;text-align:center;padding:8px}
+header{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.nav{max-width:1450px;margin:auto;display:flex;align-items:center;gap:22px;padding:12px 32px}
+.logo{width:220px;height:60px;object-fit:cover}
+.search{flex:1;position:relative}.search input{width:100%;height:45px;border:1px solid var(--line);border-radius:24px;background:#faf8f5;padding:0 48px;font-size:14px;outline:none}.search .glass{position:absolute;left:18px;top:11px}
+.links{display:flex;gap:20px;white-space:nowrap;font-size:14px}.links a{color:var(--text);text-decoration:none}.links a:hover{color:var(--brown2)}
+.actions{display:flex;gap:8px}.btn{border:0;border-radius:9px;background:var(--brown);color:#fff;padding:11px 18px;font-weight:700}.btn.secondary{background:#f3ece5;color:var(--brown)}.cart{border:0;background:#fff;font-size:23px;position:relative}.badge{position:absolute;top:-4px;right:-4px;background:#9b6559;color:#fff;border-radius:50%;font-size:10px;padding:2px 6px}
+
+.hero{background:var(--cream);padding:60px 7%;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;min-height:520px}.hero h1{font-family:Georgia,serif;font-size:60px;line-height:1.04;color:var(--brown);margin:12px 0 18px}.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--brown2);font-weight:700}.hero p{font-size:17px;line-height:1.7;color:var(--muted);max-width:650px}.hero-actions{display:flex;gap:10px;margin-top:25px;flex-wrap:wrap}.hero-art{display:flex;justify-content:center}.hero-art img{width:min(530px,92%);filter:drop-shadow(0 20px 28px rgba(73,54,42,.13))}.trust{display:flex;gap:28px;margin-top:30px;font-size:13px}.trust span{display:flex;gap:8px;align-items:center}
+
+.container{max-width:1450px;margin:auto;padding:52px 32px}.heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.heading h2{font-family:Georgia,serif;color:var(--brown);font-size:31px;margin:0 0 6px}.heading p{margin:0;color:var(--muted);font-size:14px}.heading a{color:var(--brown2);font-weight:700;text-decoration:none}
+.categories{display:grid;grid-template-columns:repeat(10,1fr);gap:12px}.category{border:1px solid var(--line);background:#fff;border-radius:15px;padding:17px 7px;text-align:center;transition:.2s}.category:hover,.category.active{background:var(--cream);transform:translateY(-3px);border-color:#cbb8a8}.category i{display:block;font-style:normal;font-size:28px;margin-bottom:7px}.category span{font-size:12px}
+
+.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:20px}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:#fff;border-radius:20px;padding:8px 13px;font-size:12px}.chip.active{background:var(--brown);color:#fff;border-color:var(--brown)}
+.sort{border:1px solid var(--line);border-radius:9px;padding:9px 12px;background:#fff}
+.products{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}.product{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff;transition:.2s;position:relative}.product:hover{transform:translateY(-4px);box-shadow:0 12px 30px #49362a12}.pic{height:205px;background:#f2eae3;display:flex;align-items:center;justify-content:center;font-size:66px}.fav{position:absolute;top:10px;right:10px;border:0;background:#fff;border-radius:50%;width:35px;height:35px;font-size:18px}.pbody{padding:14px}.tag{font-size:10px;background:#f1e6dd;color:var(--brown2);padding:4px 7px;border-radius:8px;display:inline-block;margin-bottom:7px}.pbody h3{font-size:14px;margin:3px 0}.condition{font-size:11px;color:var(--muted)}.price{font-weight:800;color:var(--brown);margin-top:8px}.seller{font-size:10px;color:#9a8e86;margin-top:4px}
+
+.banner{background:var(--brown);color:#fff;border-radius:22px;padding:34px 40px;display:flex;justify-content:space-between;align-items:center;gap:20px}.banner h2{font-family:Georgia,serif;margin:0 0 8px;font-size:29px}.banner p{margin:0;color:#e8ddd3;font-size:14px}
+
+.sell{background:#f6eee7}.sellbox{background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px;max-width:1100px;margin:auto}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}.field{border:1px solid #ddd2c9;border-radius:10px;padding:11px 13px}.field label{display:block;font-size:10px;color:#8a7b70;letter-spacing:.8px;text-transform:uppercase;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;border:0;outline:0;background:transparent}.field textarea{min-height:75px;resize:vertical}.full{grid-column:1/-1}.note{margin-top:15px;padding:13px;background:#fbf7f2;border-radius:10px;font-size:12px;color:var(--muted)}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.step{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:28px;text-align:center}.num{display:inline-flex;width:42px;height:42px;border-radius:50%;background:var(--brown);color:#fff;align-items:center;justify-content:center;font-weight:800}.step h3{font-size:17px}.step p{font-size:13px;color:var(--muted);line-height:1.6}
+.about{background:var(--soft)}.aboutinner{max-width:850px;text-align:center;margin:auto}.aboutinner p{color:var(--muted);line-height:1.8}
+
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:100;align-items:center;justify-content:center;padding:20px}.modalbox{background:#fff;border-radius:18px;width:min(600px,100%);padding:25px;max-height:90vh;overflow:auto}.modalhead{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#f2ebe5;border-radius:50%;width:35px;height:35px}.cartrow{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}.empty{text-align:center;color:var(--muted);padding:30px}
+footer{background:var(--brown);color:#fff;padding:38px 7%;display:flex;justify-content:space-between;gap:30px}footer small{color:#ded2c8}
+
+.account-note{font-size:11px;color:var(--muted);line-height:1.5}
+
+.toast{position:fixed;right:22px;bottom:22px;background:var(--brown);color:#fff;padding:13px 18px;border-radius:9px;display:none;z-index:120}
+
+/* Responsive layout: desktop, tablet, and phone */
+@media(max-width:1100px){
+  .nav{padding:12px 22px;gap:14px}
+  .links{display:none}
+  .categories{grid-template-columns:repeat(5,1fr)}
+  .products{grid-template-columns:repeat(3,1fr)}
+  .hero{grid-template-columns:1fr;padding:52px 6%}
+  .hero-art{margin-top:28px}
+  .hero-art img{width:min(430px,75vw)}
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#332a24;background:#fff}
-a{text-decoration:none;color:inherit}
-.header{background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
-.nav{max-width:1450px;margin:auto;padding:16px 34px;display:flex;align-items:center;gap:28px}
-.brand{width:285px;display:flex;align-items:center}
-.brand img{width:260px;height:76px;object-fit:cover;object-position:center}
-.search{flex:1;position:relative}
-.search input{width:100%;height:46px;border:1px solid #ddd3ca;border-radius:24px;padding:0 22px 0 46px;font-size:15px;outline:none;background:#faf8f5}
-.search span{position:absolute;left:18px;top:11px;font-size:20px}
-.navlinks{display:flex;gap:23px;font-size:15px;white-space:nowrap}
-.navlinks a:hover{color:var(--accent)}
-.actions{display:flex;gap:12px;align-items:center}
-.btn{border:0;border-radius:9px;padding:12px 20px;background:var(--brown);color:white;font-weight:700;cursor:pointer}
-.btn.light{background:#f5eee8;color:var(--brown)}
-.iconbtn{font-size:24px;border:0;background:none;cursor:pointer}
 
-.hero{background:var(--cream);min-height:520px;display:grid;grid-template-columns:1fr 1.15fr;align-items:center;padding:55px max(6vw,40px);overflow:hidden}
-.hero-copy{max-width:650px}
-.eyebrow{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:700}
-.hero h1{font-family:Georgia,serif;font-size:64px;line-height:1.02;color:var(--brown);margin:13px 0 20px}
-.hero p{font-size:18px;line-height:1.65;color:var(--muted);max-width:600px}
-.hero-buttons{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
-.hero-logo{height:520px;display:flex;justify-content:center;align-items:center}
-.hero-logo img{width:min(560px,90%);height:min(560px,90%);object-fit:contain;filter:drop-shadow(0 18px 25px rgba(73,52,37,.12))}
-.benefits{display:flex;gap:34px;margin-top:38px;color:var(--brown)}
-.benefit{display:flex;align-items:center;gap:10px;font-size:14px}
-.benefit b{font-size:23px}
+@media(max-width:700px){
+  body{overflow-x:hidden}
+  .topbar{font-size:10px;padding:7px 12px;line-height:1.35}
+  header{position:sticky;top:0}
+  .nav{
+    padding:9px 12px;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    grid-template-areas:"logo search cart" "links links links";
+    gap:9px;
+  }
+  .logo{
+    grid-area:logo;
+    width:125px;
+    height:42px;
+    object-fit:cover;
+    border-radius:6px;
+  }
+  .search{grid-area:search;display:block;min-width:0}
+  .search input{
+    height:40px;
+    padding:0 12px 0 36px;
+    font-size:12px;
+    border-radius:20px;
+  }
+  .search .glass{left:12px;top:9px}
+  .actions{grid-area:cart}
+  .actions .btn{display:none}
+  .cart{font-size:22px;padding:5px}
+  .links{
+    grid-area:links;
+    display:flex;
+    overflow-x:auto;
+    gap:18px;
+    padding:2px 2px 5px;
+    scrollbar-width:none;
+  }
+  .links::-webkit-scrollbar{display:none}
+  .links a{font-size:12px;white-space:nowrap}
 
-.section{max-width:1450px;margin:auto;padding:48px 34px}
-.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}
-.section h2{font-family:Georgia,serif;font-size:32px;color:var(--brown);margin:0}
-.section-head p{color:var(--muted);margin:7px 0 0}
-.seeall{font-weight:700;color:var(--accent)}
+  .hero{
+    display:flex;
+    flex-direction:column;
+    padding:42px 18px 35px;
+    min-height:auto;
+    text-align:left;
+  }
+  .hero h1{
+    font-size:40px;
+    line-height:1.03;
+    margin:10px 0 14px;
+  }
+  .hero p{font-size:14px;line-height:1.65}
+  .eyebrow{font-size:9px;letter-spacing:2px}
+  .hero-actions{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .hero-actions .btn{padding:12px 8px;text-align:center;font-size:12px}
+  .hero-art{order:-1;margin:0 auto 24px}
+  .hero-art img{
+    width:min(300px,78vw);
+    max-height:280px;
+    object-fit:contain;
+  }
+  .trust{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:9px;
+    margin-top:22px;
+    font-size:11px;
+  }
 
-.categories{display:grid;grid-template-columns:repeat(10,1fr);gap:13px}
-.cat{border:1px solid var(--line);border-radius:17px;background:#fff;padding:18px 8px;text-align:center;cursor:pointer;transition:.2s}
-.cat:hover,.cat.active{transform:translateY(-3px);background:#faf3ec;border-color:#cdb9a6}
-.cat .emoji{font-size:29px;display:block;margin-bottom:8px}
-.cat span{font-size:13px}
+  .container{padding:34px 14px}
+  .heading{align-items:flex-start;gap:12px}
+  .heading h2{font-size:25px}
+  .heading p{font-size:12px;line-height:1.5}
+  .heading a{font-size:11px;white-space:nowrap}
 
-.products{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
-.product{background:#fff;border:1px solid #eee5de;border-radius:16px;overflow:hidden;position:relative;transition:.2s}
-.product:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(68,48,35,.09)}
-.product-img{height:215px;background:#f2ebe4;display:flex;align-items:center;justify-content:center;font-size:64px}
-.heart{position:absolute;right:11px;top:11px;border:0;background:#fff;border-radius:50%;width:35px;height:35px;cursor:pointer;font-size:18px}
-.product-body{padding:15px}
-.product-title{font-weight:700;margin-bottom:4px}
-.meta{font-size:12px;color:#877b72}
-.price{font-weight:800;color:var(--brown);margin-top:8px}
-.seller{font-size:11px;color:#9a8e85;margin-top:5px}
+  .categories{
+    display:flex;
+    overflow-x:auto;
+    gap:9px;
+    padding:3px 2px 10px;
+    scrollbar-width:none;
+  }
+  .categories::-webkit-scrollbar{display:none}
+  .category{
+    flex:0 0 86px;
+    min-height:82px;
+    padding:12px 6px;
+    border-radius:13px;
+  }
+  .category i{font-size:23px;margin-bottom:5px}
+  .category span{font-size:10px}
 
-.sell-section{background:#f5eee8}
-.sell-box{max-width:1100px;margin:auto;background:white;border:1px solid var(--line);border-radius:22px;padding:32px}
-.sell-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:23px}
-.field{border:1px solid #ded3ca;border-radius:10px;padding:12px 14px;background:#fff}
-.field label{display:block;font-size:11px;color:#88796e;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
-.field input,.field select,.field textarea{border:0;outline:0;width:100%;font:inherit;background:transparent}
-.field textarea{min-height:75px;resize:vertical}
-.full{grid-column:1/-1}
-.sell-note{background:#fbf7f2;border-radius:12px;padding:15px;color:#6f6259;font-size:13px;margin-top:17px}
+  .toolbar{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:9px;
+  }
+  .chips{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:3px;
+    scrollbar-width:none;
+  }
+  .chips::-webkit-scrollbar{display:none}
+  .chip{white-space:nowrap;font-size:11px;padding:8px 12px}
+  .sort{width:100%;font-size:12px}
 
-.how{background:#fff}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.step{padding:28px;border-radius:18px;background:var(--cream);text-align:center}
-.step-num{width:44px;height:44px;border-radius:50%;background:var(--brown);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:10px}
+  .products{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+  .product{border-radius:12px}
+  .pic{
+    height:145px;
+    font-size:48px;
+  }
+  .pbody{padding:10px}
+  .tag{font-size:8px;padding:3px 6px}
+  .pbody h3{
+    font-size:12px;
+    line-height:1.3;
+    min-height:31px;
+  }
+  .condition{font-size:9px;line-height:1.4}
+  .price{font-size:13px;margin-top:6px}
+  .seller{font-size:9px}
+  .pbody .btn{
+    font-size:10px;
+    padding:9px 5px;
+    margin-top:8px !important;
+    border-radius:7px;
+  }
+  .fav{width:30px;height:30px;font-size:16px;top:7px;right:7px}
 
-.about{background:#fbf8f4;text-align:center}
-.about-inner{max-width:850px;margin:auto}
-.about p{color:var(--muted);line-height:1.8}
+  .banner{
+    padding:25px 20px;
+    border-radius:16px;
+    display:block;
+  }
+  .banner h2{font-size:23px;line-height:1.2}
+  .banner p{font-size:12px;line-height:1.55;margin-bottom:17px}
+  .banner .btn{font-size:11px;padding:10px 13px}
 
-footer{background:var(--brown);color:white;padding:40px 7%;display:flex;justify-content:space-between;gap:30px}
-footer small{color:#ddd0c6}
+  .sellbox{padding:20px 14px;border-radius:16px}
+  .formgrid{grid-template-columns:1fr;gap:10px}
+  .full{grid-column:auto}
+  .field{padding:10px 11px}
+  .field label{font-size:9px}
+  .field input,.field select,.field textarea{font-size:12px}
+  .field textarea{min-height:90px}
+  .sellbox .btn{width:100%;font-size:12px}
+  .note{font-size:10px;line-height:1.55}
 
-.toast{position:fixed;right:25px;bottom:25px;background:var(--brown);color:#fff;padding:14px 20px;border-radius:10px;display:none;z-index:50}
+  .steps{grid-template-columns:1fr;gap:10px}
+  .step{padding:20px 17px}
+  .step h3{font-size:15px;margin:10px 0 6px}
+  .step p{font-size:11px;margin:0;line-height:1.55}
 
-@media(max-width:1050px){
- .navlinks{display:none}.categories{grid-template-columns:repeat(5,1fr)}.products{grid-template-columns:repeat(3,1fr)}
- .hero{grid-template-columns:1fr}.hero-logo{height:380px}.hero h1{font-size:52px}
+  .aboutinner p{font-size:12px;line-height:1.7}
+  footer{
+    padding:28px 18px;
+    flex-direction:column;
+    gap:10px;
+    font-size:13px;
+  }
+  footer small{font-size:10px}
+  .modal{padding:12px}
+  .modalbox{padding:18px;border-radius:15px}
+  .modalhead h2{font-size:21px}
+  .cartrow{font-size:12px;gap:10px}
+  .toast{right:12px;left:12px;bottom:12px;text-align:center;font-size:12px}
 }
-@media(max-width:650px){
- .nav{padding:12px 15px}.brand{width:145px}.brand img{width:145px;height:52px}
- .search{display:none}.hero{padding:45px 22px}.hero h1{font-size:42px}.hero-logo{height:320px}
- .benefits{flex-direction:column;gap:12px}.section{padding:38px 18px}
- .categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}
- .sell-grid{grid-template-columns:1fr}.full{grid-column:auto}.steps{grid-template-columns:1fr}
- footer{flex-direction:column}
+
+
+@media(max-width:700px){
+  #accountModal .modalbox{width:100%;max-height:92vh}
+  #accountModal .formgrid{margin-top:10px}
+}
+
+@media(max-width:380px){
+  .logo{width:108px}
+  .hero h1{font-size:34px}
+  .hero-actions{grid-template-columns:1fr}
+  .products{gap:8px}
+  .pic{height:130px}
+  .category{flex-basis:80px}
 }
 </style>
 </head>
 <body>
+<div class="topbar">♻️ Beri kesempatan kedua pada barang yang masih bernilai — belanja hemat, jual lebih mudah.</div>
+<div style="display:none" id="mobileHint"></div>
 
-<header class="header">
-  <nav class="nav">
-    <a class="brand" href="#beranda"><img src="desyla-logo.png" alt="DESYLA.ID"></a>
-    <div class="search"><span>⌕</span><input id="searchInput" oninput="searchProducts()" placeholder="Cari barang preloved impianmu..."></div>
-    <div class="navlinks">
-      <a href="#beranda">Beranda</a><a href="#kategori">Kategori</a><a href="#jual">Jual Barang</a><a href="#cara">Cara Kerja</a><a href="#tentang">Tentang Kami</a>
-    </div>
-    <div class="actions"><button class="iconbtn">🛒</button><button class="btn light">Masuk</button><button class="btn">Daftar</button></div>
-  </nav>
+<header>
+<nav class="nav">
+<a href="#beranda"><img class="logo" src="desyla-logo.png" alt="DESYLA.ID"></a>
+<div class="search"><span class="glass">⌕</span><input id="search" oninput="searchProducts()" placeholder="Cari barang preloved impianmu..."></div>
+<div class="links"><a href="#beranda">Beranda</a><a href="#kategori">Kategori</a><a href="#produk">Jelajahi</a><a href="#jual">Jual Barang</a><a href="#cara">Cara Kerja</a></div>
+<div class="actions"><button class="cart" onclick="openCart()">🛒<span class="badge" id="cartBadge">0</span></button><button class="btn secondary" onclick="openAccount('login')">Masuk</button><button class="btn" onclick="openAccount('register')">Daftar</button></div>
+</nav>
 </header>
 
-<main>
 <section class="hero" id="beranda">
-  <div class="hero-copy">
-    <div class="eyebrow">Marketplace Preloved untuk Semua</div>
-    <h1>Barang Preloved,<br>Peluang Baru.</h1>
-    <p>Temukan berbagai barang berkualitas dengan harga lebih terjangkau, atau jual kembali barangmu yang masih layak pakai. <b>DESYLA.ID</b> hadir untuk semua—pria, wanita, mahasiswa, keluarga, dan siapa saja.</p>
-    <div class="hero-buttons">
-      <a class="btn" href="#produk">Mulai Belanja →</a>
-      <a class="btn light" href="#jual">Jual Barangmu</a>
+<div>
+<div class="eyebrow">Marketplace Preloved untuk Semua</div>
+<h1>Barang Preloved,<br>Peluang Baru.</h1>
+<p>Temukan barang berkualitas dengan harga lebih terjangkau, atau jual kembali barangmu yang masih layak pakai. DESYLA.ID mempertemukan penjual dan pembeli untuk berbagai kebutuhan—pria, wanita, mahasiswa, keluarga, dan siapa saja.</p>
+<div class="hero-actions"><a class="btn" href="#produk">Mulai Belanja →</a><a class="btn secondary" href="#jual">＋ Jual Barangmu</a></div>
+<div class="trust"><span>♻️ Lebih berkelanjutan</span><span>♡ Lebih hemat</span><span>↻ Barang punya kesempatan kedua</span></div>
+</div>
+<div class="hero-art"><img src="desyla-logo.png" alt="DESYLA.ID Marketplace"></div>
+</section>
+
+<section class="container" id="kategori">
+<div class="heading"><div><h2>Jelajahi Kategori</h2><p>Berbagai kebutuhan, satu tempat.</p></div></div>
+<div class="categories">
+<button class="category active" onclick="filterCategory('Semua',this)"><i>✦</i><span>Semua</span></button>
+<button class="category" onclick="filterCategory('Fashion',this)"><i>👕</i><span>Fashion</span></button>
+<button class="category" onclick="filterCategory('Elektronik',this)"><i>📱</i><span>Elektronik</span></button>
+<button class="category" onclick="filterCategory('Rumah',this)"><i>🛋️</i><span>Rumah</span></button>
+<button class="category" onclick="filterCategory('Buku',this)"><i>📚</i><span>Buku</span></button>
+<button class="category" onclick="filterCategory('Kecantikan',this)"><i>✨</i><span>Kecantikan</span></button>
+<button class="category" onclick="filterCategory('Olahraga',this)"><i>🏋️</i><span>Olahraga</span></button>
+<button class="category" onclick="filterCategory('Hobi',this)"><i>🎮</i><span>Hobi</span></button>
+<button class="category" onclick="filterCategory('Otomotif',this)"><i>🚗</i><span>Otomotif</span></button>
+<button class="category" onclick="filterCategory('Lainnya',this)"><i>＋</i><span>Lainnya</span></button>
+</div>
+</section>
+
+<section class="container" id="produk">
+<div class="heading"><div><h2>Temukan Barang Favoritmu</h2><p>Produk preloved dari berbagai kategori.</p></div><a href="#produk">Lihat semua →</a></div>
+<div class="toolbar"><div class="chips"><button class="chip active" onclick="sortNewest(this)">Terbaru</button><button class="chip" onclick="sortCheap(this)">Harga terendah</button><button class="chip" onclick="toast('Filter lokasi siap dikembangkan.')">Terdekat</button></div><select class="sort" onchange="sortSelect(this)"><option>Urutkan</option><option value="cheap">Harga terendah</option><option value="expensive">Harga tertinggi</option></select></div>
+<div class="products" id="grid">
+<article class="product" data-cat="Fashion" data-name="Kemeja Linen Wanita" data-price="75000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">👚</div><div class="pbody"><span class="tag">Fashion</span><h3>Kemeja Linen Wanita</h3><div class="condition">Sangat Baik • Ukuran M</div><div class="price">Rp75.000</div><div class="seller">Naya • Parepare</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Kemeja Linen Wanita',75000)">Tambah ke keranjang</button></div></article>
+<article class="product" data-cat="Elektronik" data-name="Headphone Wireless" data-price="180000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">🎧</div><div class="pbody"><span class="tag">Elektronik</span><h3>Headphone Wireless</h3><div class="condition">Baik • Lengkap</div><div class="price">Rp180.000</div><div class="seller">Ardi • Makassar</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Headphone Wireless',180000)">Tambah ke keranjang</button></div></article>
+<article class="product" data-cat="Buku" data-name="Paket Buku Teknik" data-price="90000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">📚</div><div class="pbody"><span class="tag">Buku</span><h3>Paket Buku Teknik</h3><div class="condition">Baik • 4 buku</div><div class="price">Rp90.000</div><div class="seller">Raka • Parepare</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Paket Buku Teknik',90000)">Tambah ke keranjang</button></div></article>
+<article class="product" data-cat="Fashion" data-name="Sneakers Pria" data-price="150000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">👟</div><div class="pbody"><span class="tag">Fashion</span><h3>Sneakers Pria</h3><div class="condition">Sangat Baik • Size 42</div><div class="price">Rp150.000</div><div class="seller">Fajar • Makassar</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Sneakers Pria',150000)">Tambah ke keranjang</button></div></article>
+<article class="product" data-cat="Elektronik" data-name="Kamera Digital" data-price="850000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">📷</div><div class="pbody"><span class="tag">Elektronik</span><h3>Kamera Digital</h3><div class="condition">Baik • 12 MP</div><div class="price">Rp850.000</div><div class="seller">Dita • Parepare</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Kamera Digital',850000)">Tambah ke keranjang</button></div></article>
+<article class="product" data-cat="Rumah" data-name="Lampu Meja Minimalis" data-price="65000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">💡</div><div class="pbody"><span class="tag">Rumah</span><h3>Lampu Meja Minimalis</h3><div class="condition">Baik • Berfungsi</div><div class="price">Rp65.000</div><div class="seller">Aulia • Parepare</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Lampu Meja Minimalis',65000)">Tambah ke keranjang</button></div></article>
+<article class="product" data-cat="Olahraga" data-name="Dumbbell Set" data-price="120000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">🏋️</div><div class="pbody"><span class="tag">Olahraga</span><h3>Dumbbell Set</h3><div class="condition">Layak Pakai • 10 kg</div><div class="price">Rp120.000</div><div class="seller">Bima • Makassar</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Dumbbell Set',120000)">Tambah ke keranjang</button></div></article>
+<article class="product" data-cat="Hobi" data-name="Game Console" data-price="600000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">🎮</div><div class="pbody"><span class="tag">Hobi</span><h3>Game Console</h3><div class="condition">Baik • 2 controller</div><div class="price">Rp600.000</div><div class="seller">Kevin • Parepare</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Game Console',600000)">Tambah ke keranjang</button></div></article>
+<article class="product" data-cat="Kecantikan" data-name="Beauty Organizer" data-price="55000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">🧴</div><div class="pbody"><span class="tag">Kecantikan</span><h3>Beauty Organizer</h3><div class="condition">Sangat Baik</div><div class="price">Rp55.000</div><div class="seller">Sasa • Makassar</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Beauty Organizer',55000)">Tambah ke keranjang</button></div></article>
+<article class="product" data-cat="Lainnya" data-name="Backpack Unisex" data-price="100000"><button class="fav" onclick="fav(this)">♡</button><div class="pic">🎒</div><div class="pbody"><span class="tag">Lainnya</span><h3>Backpack Unisex</h3><div class="condition">Baik • 25 L</div><div class="price">Rp100.000</div><div class="seller">Rani • Parepare</div><button class="btn" style="width:100%;margin-top:10px" onclick="addCart('Backpack Unisex',100000)">Tambah ke keranjang</button></div></article>
+</div>
+</section>
+
+<section class="container">
+<div class="banner"><div><h2>Punya barang yang sudah tidak terpakai?</h2><p>Jangan biarkan menumpuk. Jual kembali dan beri barangmu kesempatan kedua.</p></div><a class="btn secondary" href="#jual">Jual Barang Sekarang →</a></div>
+</section>
+
+<section class="sell" id="jual"><div class="container">
+<div class="sellbox"><div class="heading"><div><h2>Jual Barangmu di DESYLA.ID</h2><p>Semua barang layak pakai punya peluang untuk menemukan pemilik baru.</p></div></div>
+<div class="formgrid">
+<div class="field"><label>Nama Barang</label><input id="itemName" placeholder="Contoh: Laptop bekas"></div>
+<div class="field"><label>Kategori</label><select id="itemCat"><option>Fashion</option><option>Elektronik</option><option>Rumah</option><option>Buku</option><option>Kecantikan</option><option>Olahraga</option><option>Hobi</option><option>Otomotif</option><option>Lainnya</option></select></div>
+<div class="field"><label>Harga</label><input id="itemPrice" placeholder="Rp"></div>
+<div class="field"><label>Kondisi</label><select><option>Seperti baru</option><option>Sangat baik</option><option>Baik</option><option>Layak pakai</option></select></div>
+<div class="field full"><label>Deskripsi</label><textarea placeholder="Jelaskan kondisi, ukuran, kelengkapan, dan kekurangan barang dengan jujur."></textarea></div>
+<div class="field full"><label>Foto Barang</label><input type="file" accept="image/*"></div>
+<div class="full" style="text-align:right"><button class="btn" onclick="postItem()">Pasang Barang di DESYLA.ID</button></div>
+</div>
+<div class="note">🔐 <b>Etika jual-beli DESYLA.ID:</b> tampilkan kondisi barang secara jujur, gunakan foto asli, dan cantumkan kekurangan barang agar pembeli dapat mengambil keputusan dengan informasi yang jelas.</div>
+</div></div></section>
+
+<section class="container" id="cara"><div class="heading"><div><h2>Cara Kerja DESYLA.ID</h2><p>Mudah untuk pembeli maupun penjual.</p></div></div>
+<div class="steps"><div class="step"><div class="num">1</div><h3>Pasang Barang</h3><p>Unggah foto, kategori, kondisi, harga, dan deskripsi barang yang ingin kamu jual.</p></div><div class="step"><div class="num">2</div><h3>Temukan Barang</h3><p>Pembeli mencari barang berdasarkan kategori, kata kunci, dan kebutuhan.</p></div><div class="step"><div class="num">3</div><h3>Bertransaksi</h3><p>Pembeli dan penjual melanjutkan transaksi melalui mekanisme yang tersedia.</p></div></div></section>
+
+<section class="about"><div class="container"><div class="aboutinner"><h2>Tentang DESYLA.ID</h2><p><b>🌐 Bisa digunakan langsung melalui browser — tanpa download aplikasi.</b><br><br>DESYLA.ID adalah konsep marketplace preloved yang mempertemukan pemilik barang yang sudah tidak digunakan dengan orang yang membutuhkannya. Kami percaya barang lama tidak harus menjadi barang tak berguna. Dengan kesempatan kedua, barang dapat kembali bernilai, digunakan lebih lama, dan membantu mengurangi pemborosan.</p></div></div></section>
+
+<footer><div><strong>DESYLA.ID</strong><br><small>Preloved for a Better Tomorrow.</small></div><div><small>Buy • Sell • Reuse • Make an Impact</small></div></footer>
+
+<div class="modal" id="cartModal"><div class="modalbox"><div class="modalhead"><h2>Keranjang</h2><button class="close" onclick="closeCart()">×</button></div><div id="cartItems"></div><div style="display:flex;justify-content:space-between;font-weight:800;padding-top:18px"><span>Total</span><span id="total">Rp0</span></div><button class="btn" style="width:100%;margin-top:16px" onclick="toast('Checkout demo — sistem pembayaran dapat ditambahkan pada tahap berikutnya.')">Lanjut Checkout</button></div></div>
+
+<div class="modal" id="accountModal">
+  <div class="modalbox">
+    <div class="modalhead">
+      <h2 id="accountTitle">Masuk ke DESYLA.ID</h2>
+      <button class="close" onclick="closeAccount()">×</button>
     </div>
-    <div class="benefits">
-      <div class="benefit"><b>♻</b><span>Lebih berkelanjutan</span></div>
-      <div class="benefit"><b>♡</b><span>Lebih hemat</span></div>
-      <div class="benefit"><b>↻</b><span>Barang punya kesempatan kedua</span></div>
+    <p id="accountSubtitle" style="color:var(--muted);font-size:13px;line-height:1.5">
+      Masuk untuk mengelola barang dan aktivitasmu.
+    </p>
+    <div class="formgrid" style="margin-top:15px">
+      <div class="field" id="nameField" style="display:none"><label>Nama</label><input id="accountName" placeholder="Nama lengkap"></div>
+      <div class="field full"><label>Email</label><input id="accountEmail" type="email" placeholder="nama@email.com"></div>
+      <div class="field full"><label>Kata Sandi</label><input id="accountPassword" type="password" placeholder="••••••••"></div>
     </div>
+    <button class="btn" id="accountSubmit" style="width:100%;margin-top:15px" onclick="submitAccount()">Masuk</button>
+    <p id="switchAccount" style="text-align:center;font-size:12px;color:var(--muted);margin:15px 0 0"></p>
   </div>
-  <div class="hero-logo"><img src="desyla-logo.png" alt="Logo DESYLA.ID"></div>
-</section>
+</div>
 
-<section class="section" id="kategori">
-  <div class="section-head"><div><h2>Jelajahi Kategori</h2><p>Apa pun kebutuhanmu, mungkin ada di sini.</p></div></div>
-  <div class="categories">
-    <div class="cat active" onclick="filterCategory('Semua',this)"><span class="emoji">✦</span><span>Semua</span></div>
-    <div class="cat" onclick="filterCategory('Fashion',this)"><span class="emoji">👕</span><span>Fashion</span></div>
-    <div class="cat" onclick="filterCategory('Elektronik',this)"><span class="emoji">📱</span><span>Elektronik</span></div>
-    <div class="cat" onclick="filterCategory('Rumah',this)"><span class="emoji">🛋️</span><span>Rumah</span></div>
-    <div class="cat" onclick="filterCategory('Buku',this)"><span class="emoji">📚</span><span>Buku</span></div>
-    <div class="cat" onclick="filterCategory('Kecantikan',this)"><span class="emoji">✨</span><span>Kecantikan</span></div>
-    <div class="cat" onclick="filterCategory('Olahraga',this)"><span class="emoji">🏋️</span><span>Olahraga</span></div>
-    <div class="cat" onclick="filterCategory('Hobi',this)"><span class="emoji">🎮</span><span>Hobi</span></div>
-    <div class="cat" onclick="filterCategory('Otomotif',this)"><span class="emoji">🚗</span><span>Otomotif</span></div>
-    <div class="cat" onclick="filterCategory('Lainnya',this)"><span class="emoji">＋</span><span>Lainnya</span></div>
+<div class="modal" id="successModal">
+  <div class="modalbox" style="text-align:center">
+    <div style="font-size:46px">✓</div>
+    <h2 id="successTitle">Berhasil!</h2>
+    <p id="successText" style="color:var(--muted);line-height:1.6"></p>
+    <button class="btn" onclick="closeSuccess()">Kembali ke DESYLA.ID</button>
   </div>
-</section>
-
-<section class="section" id="produk">
-  <div class="section-head"><div><h2>Pilihan Terbaik untuk Kamu</h2><p>Barang preloved pilihan dari berbagai kategori.</p></div><a class="seeall" href="#produk">Lihat Semua →</a></div>
-  <div class="products" id="productGrid">
-    <article class="product" data-cat="Fashion" data-name="Kemeja Linen Wanita"><button class="heart" onclick="like(this)">♡</button><div class="product-img">👚</div><div class="product-body"><div class="product-title">Kemeja Linen Wanita</div><div class="meta">Kondisi: Sangat Baik</div><div class="price">Rp75.000</div><div class="seller">Penjual: Naya</div></div></article>
-    <article class="product" data-cat="Elektronik" data-name="Headphone Wireless"><button class="heart" onclick="like(this)">♡</button><div class="product-img">🎧</div><div class="product-body"><div class="product-title">Headphone Wireless</div><div class="meta">Kondisi: Baik</div><div class="price">Rp180.000</div><div class="seller">Penjual: Ardi</div></div></article>
-    <article class="product" data-cat="Buku" data-name="Buku Teknik"><button class="heart" onclick="like(this)">♡</button><div class="product-img">📚</div><div class="product-body"><div class="product-title">Paket Buku Teknik</div><div class="meta">Kondisi: Baik</div><div class="price">Rp90.000</div><div class="seller">Penjual: Raka</div></div></article>
-    <article class="product" data-cat="Fashion" data-name="Sneakers Pria"><button class="heart" onclick="like(this)">♡</button><div class="product-img">👟</div><div class="product-body"><div class="product-title">Sneakers Pria</div><div class="meta">Kondisi: Sangat Baik</div><div class="price">Rp150.000</div><div class="seller">Penjual: Fajar</div></div></article>
-    <article class="product" data-cat="Elektronik" data-name="Kamera Digital"><button class="heart" onclick="like(this)">♡</button><div class="product-img">📷</div><div class="product-body"><div class="product-title">Kamera Digital</div><div class="meta">Kondisi: Baik</div><div class="price">Rp850.000</div><div class="seller">Penjual: Dita</div></div></article>
-    <article class="product" data-cat="Rumah" data-name="Lampu Meja"><button class="heart" onclick="like(this)">♡</button><div class="product-img">💡</div><div class="product-body"><div class="product-title">Lampu Meja Minimalis</div><div class="meta">Kondisi: Baik</div><div class="price">Rp65.000</div><div class="seller">Penjual: Aulia</div></div></article>
-    <article class="product" data-cat="Olahraga" data-name="Dumbbell Set"><button class="heart" onclick="like(this)">♡</button><div class="product-img">🏋️</div><div class="product-body"><div class="product-title">Dumbbell Set</div><div class="meta">Kondisi: Layak Pakai</div><div class="price">Rp120.000</div><div class="seller">Penjual: Bima</div></div></article>
-    <article class="product" data-cat="Hobi" data-name="Game Console"><button class="heart" onclick="like(this)">♡</button><div class="product-img">🎮</div><div class="product-body"><div class="product-title">Game Console</div><div class="meta">Kondisi: Baik</div><div class="price">Rp600.000</div><div class="seller">Penjual: Kevin</div></div></article>
-    <article class="product" data-cat="Kecantikan" data-name="Beauty Organizer"><button class="heart" onclick="like(this)">♡</button><div class="product-img">🧴</div><div class="product-body"><div class="product-title">Beauty Organizer</div><div class="meta">Kondisi: Sangat Baik</div><div class="price">Rp55.000</div><div class="seller">Penjual: Sasa</div></div></article>
-    <article class="product" data-cat="Lainnya" data-name="Backpack Unisex"><button class="heart" onclick="like(this)">♡</button><div class="product-img">🎒</div><div class="product-body"><div class="product-title">Backpack Unisex</div><div class="meta">Kondisi: Baik</div><div class="price">Rp100.000</div><div class="seller">Penjual: Rani</div></div></article>
-  </div>
-</section>
-
-<section class="sell-section" id="jual">
-  <div class="section">
-    <div class="sell-box">
-      <div class="section-head"><div><h2>Jual Barangmu di DESYLA.ID</h2><p>Barang apa pun yang masih layak bisa mendapatkan pemilik baru.</p></div></div>
-      <div class="sell-grid">
-        <div class="field"><label>Nama Barang</label><input id="itemName" placeholder="Contoh: Jaket denim"></div>
-        <div class="field"><label>Kategori</label><select id="itemCat"><option>Fashion</option><option>Elektronik</option><option>Rumah</option><option>Buku</option><option>Kecantikan</option><option>Olahraga</option><option>Hobi</option><option>Otomotif</option><option>Lainnya</option></select></div>
-        <div class="field"><label>Harga</label><input id="itemPrice" placeholder="Rp"></div>
-        <div class="field"><label>Kondisi</label><select><option>Seperti baru</option><option>Sangat baik</option><option>Baik</option><option>Layak pakai</option></select></div>
-        <div class="field full"><label>Deskripsi</label><textarea placeholder="Jelaskan kondisi, ukuran, kelengkapan, atau kekurangan barang"></textarea></div>
-        <div class="field full"><label>Foto Barang</label><input type="file" accept="image/*"></div>
-        <div class="full" style="text-align:right"><button class="btn" onclick="postItem()">Pasang Barang</button></div>
-      </div>
-      <div class="sell-note">💡 <b>Tips:</b> Cantumkan kondisi barang dengan jujur, foto yang jelas, dan harga yang wajar agar pembeli lebih percaya.</div>
-    </div>
-  </div>
-</section>
-
-<section class="section how" id="cara">
-  <div class="section-head"><div><h2>Cara Kerja DESYLA.ID</h2><p>Sederhana untuk pembeli maupun penjual.</p></div></div>
-  <div class="steps">
-    <div class="step"><div class="step-num">1</div><h3>Pasang Barang</h3><p>Unggah barang yang sudah tidak kamu gunakan dan lengkapi informasinya.</p></div>
-    <div class="step"><div class="step-num">2</div><h3>Temukan & Pilih</h3><p>Pembeli menjelajahi kategori dan menemukan barang sesuai kebutuhan.</p></div>
-    <div class="step"><div class="step-num">3</div><h3>Transaksi</h3><p>Pembeli dan penjual melanjutkan proses transaksi melalui sistem yang tersedia.</p></div>
-  </div>
-</section>
-
-<section class="section about" id="tentang">
-  <div class="about-inner">
-    <h2>Tentang DESYLA.ID</h2>
-    <p>DESYLA.ID adalah konsep marketplace preloved yang mempertemukan orang yang ingin menjual barang yang sudah tidak digunakan dengan orang yang membutuhkannya. Kami percaya barang lama tidak harus menjadi barang tak berguna—dengan kesempatan kedua, barang dapat kembali bernilai dan digunakan lebih lama.</p>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div><strong>DESYLA.ID</strong><br><small>Preloved for a Better Tomorrow.</small></div>
-  <div><small>Buy • Sell • Reuse • Make an Impact</small></div>
-</footer>
-
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
-function showToast(msg){
- const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block';
- setTimeout(()=>t.style.display='none',2500);
-}
-function like(btn){
- btn.textContent = btn.textContent==='♡' ? '♥' : '♡';
-}
-function filterCategory(cat, el){
- document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active')); el.classList.add('active');
- document.querySelectorAll('.product').forEach(p=>{
-   p.style.display=(cat==='Semua'||p.dataset.cat===cat)?'block':'none';
- });
-}
-function searchProducts(){
- const q=document.getElementById('searchInput').value.toLowerCase();
- document.querySelectorAll('.product').forEach(p=>{
-   p.style.display=p.dataset.name.toLowerCase().includes(q)?'block':'none';
- });
-}
+let cart=[];
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2300)}
+function fav(b){b.textContent=b.textContent==='♡'?'♥':'♡'}
+function addCart(name,price){cart.push({name,price});document.getElementById('cartBadge').textContent=cart.length;toast(name+' ditambahkan ke keranjang.')}
+function openCart(){document.getElementById('cartModal').style.display='flex';renderCart()}
+function closeCart(){document.getElementById('cartModal').style.display='none'}
+function renderCart(){const box=document.getElementById('cartItems');if(!cart.length){box.innerHTML='<div class="empty">Keranjang masih kosong.</div>';document.getElementById('total').textContent='Rp0';return}let total=0;box.innerHTML=cart.map((x,i)=>{total+=x.price;return `<div class="cartrow"><span>${x.name}</span><span>Rp${x.price.toLocaleString('id-ID')} <button onclick="removeCart(${i})" style="border:0;background:none">✕</button></span></div>`}).join('');document.getElementById('total').textContent='Rp'+total.toLocaleString('id-ID')}
+function removeCart(i){cart.splice(i,1);document.getElementById('cartBadge').textContent=cart.length;renderCart()}
+function filterCategory(cat,el){document.querySelectorAll('.category').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.product').forEach(p=>p.style.display=(cat==='Semua'||p.dataset.cat===cat)?'block':'none')}
+function searchProducts(){const q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.product').forEach(p=>p.style.display=p.dataset.name.toLowerCase().includes(q)?'block':'none')}
+function sortCheap(el){document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));el.classList.add('active');const g=document.getElementById('grid');[...g.children].sort((a,b)=>+a.dataset.price-+b.dataset.price).forEach(x=>g.appendChild(x))}
+function sortNewest(el){document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+function sortSelect(sel){const g=document.getElementById('grid');let arr=[...g.children];if(sel.value==='cheap')arr.sort((a,b)=>+a.dataset.price-+b.dataset.price);if(sel.value==='expensive')arr.sort((a,b)=>+b.dataset.price-+a.dataset.price);arr.forEach(x=>g.appendChild(x))}
 function postItem(){
- const name=document.getElementById('itemName').value.trim();
- if(!name){showToast('Isi nama barang terlebih dahulu.');return;}
- showToast('Barang "'+name+'" berhasil dipasang (mode demo).');
+  const n=document.getElementById('itemName').value.trim();
+  if(!n){toast('Isi nama barang terlebih dahulu.');document.getElementById('itemName').focus();return}
+  document.getElementById('successTitle').textContent='Barang siap dipasang!';
+  document.getElementById('successText').textContent='Listing "'+n+'" sudah dibuat dalam mode demo. Pada versi produksi, listing dapat disimpan ke akun penjual dan ditampilkan kepada pembeli.';
+  document.getElementById('successModal').style.display='flex';
 }
+let accountMode='login';
+function openAccount(mode){
+  accountMode=mode;
+  document.getElementById('accountModal').style.display='flex';
+  document.getElementById('nameField').style.display=mode==='register'?'block':'none';
+  document.getElementById('accountTitle').textContent=mode==='register'?'Daftar di DESYLA.ID':'Masuk ke DESYLA.ID';
+  document.getElementById('accountSubtitle').textContent=mode==='register'?'Buat akun langsung melalui website—tanpa perlu mengunduh aplikasi.':'Masuk langsung melalui browser untuk mengelola aktivitasmu.';
+  document.getElementById('accountSubmit').textContent=mode==='register'?'Buat Akun':'Masuk';
+  document.getElementById('switchAccount').innerHTML=mode==='register'
+    ? 'Sudah punya akun? <button onclick="openAccount(\\'login\\')" style="border:0;background:none;color:var(--brown2);font-weight:700">Masuk</button>'
+    : 'Belum punya akun? <button onclick="openAccount(\\'register\\')" style="border:0;background:none;color:var(--brown2);font-weight:700">Daftar sekarang</button>';
+}
+function closeAccount(){document.getElementById('accountModal').style.display='none'}
+function submitAccount(){
+  const email=document.getElementById('accountEmail').value.trim();
+  const pass=document.getElementById('accountPassword').value.trim();
+  if(!email||!pass){toast('Lengkapi email dan kata sandi terlebih dahulu.');return}
+  closeAccount();
+  document.getElementById('successTitle').textContent=accountMode==='register'?'Akun berhasil dibuat!':'Berhasil masuk!';
+  document.getElementById('successText').textContent=accountMode==='register'
+    ? 'Pendaftaran dilakukan langsung melalui website. Sistem akun permanen dapat dihubungkan ke database pada tahap produksi.'
+    : 'Kamu sudah masuk dalam mode demo. DESYLA.ID tidak memerlukan aplikasi terpisah untuk digunakan.';
+  document.getElementById('successModal').style.display='flex';
+}
+function closeSuccess(){document.getElementById('successModal').style.display='none'}
+
 </script>
 </body>
 </html>
