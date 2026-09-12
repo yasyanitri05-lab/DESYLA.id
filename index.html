@@ -384,8 +384,10 @@ function openAccount(mode){
   document.getElementById('accountSubtitle').textContent=mode==='register'?'Buat akun langsung melalui website—tanpa perlu mengunduh aplikasi.':'Masuk langsung melalui browser untuk mengelola aktivitasmu.';
   document.getElementById('accountSubmit').textContent=mode==='register'?'Buat Akun':'Masuk';
   document.getElementById('switchAccount').innerHTML=mode==='register'
-    ? 'Sudah punya akun? <button onclick="openAccount(\\'login\\')" style="border:0;background:none;color:var(--brown2);font-weight:700">Masuk</button>'
-    : 'Belum punya akun? <button onclick="openAccount(\\'register\\')" style="border:0;background:none;color:var(--brown2);font-weight:700">Daftar sekarang</button>';
+    ? 'Sudah punya akun? <button id="switchToLogin" style="border:0;background:none;color:var(--brown2);font-weight:700">Masuk</button>'
+    : 'Belum punya akun? <button id="switchToRegister" style="border:0;background:none;color:var(--brown2);font-weight:700">Daftar sekarang</button>';
+  const switchBtn = document.getElementById(mode==='register'?'switchToLogin':'switchToRegister');
+  if(switchBtn) switchBtn.onclick=()=>openAccount(mode==='register'?'login':'register');
 }
 function closeAccount(){document.getElementById('accountModal').style.display='none'}
 function submitAccount(){
